@@ -1,57 +1,200 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f7fb;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background:
+    radial-gradient(circle at top left, #7ecbff 0%, transparent 30%),
+    radial-gradient(circle at bottom right, #5f8dff 0%, transparent 30%),
+    linear-gradient(135deg, #0b3c78, #0f5db8 55%, #2c8dff);
+  overflow: hidden;
+  position: relative;
+  padding: 30px;
 }
 
-/* Logo oben rechts */
 .logo {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  width: 400px;
+  top: 24px;
+  right: 24px;
+  width: 170px;
   height: auto;
+  z-index: 10;
 }
 
-/* Box in der Mitte */
-.container {
+.background-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.2;
+}
+
+.shape1 {
+  width: 260px;
+  height: 260px;
   background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  width: 450px;
+  top: 80px;
+  left: 100px;
+}
+
+.shape2 {
+  width: 320px;
+  height: 320px;
+  background: #9fd1ff;
+  bottom: 60px;
+  right: 120px;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 720px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 30px;
+  padding: 42px;
+  color: white;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.tag {
+  display: inline-block;
+  margin: 0 0 14px 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
 }
 
 h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
+  margin: 0 0 12px 0;
+  font-size: 42px;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin: 0 0 28px 0;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.amount-card {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.amount-label {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 #amount {
-  font-size: 60px;
+  font-size: 78px;
   font-weight: bold;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.goal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  overflow: hidden;
   margin-bottom: 30px;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
-/* Buttons */
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffffff, #d8ecff);
+  transition: width 0.35s ease;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
 .buttons button {
-  font-size: 22px;
-  padding: 15px 25px;
-  margin: 10px;
   border: none;
-  border-radius: 12px;
+  border-radius: 18px;
+  padding: 18px 20px;
+  font-size: 21px;
+  font-weight: bold;
   cursor: pointer;
-  background: #0b4a8b;
-  color: white;
-  transition: 0.2s;
+  background: white;
+  color: #0b4a8b;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
-/* Hover Effekt */
 .buttons button:hover {
-  background: #08386a;
+  transform: translateY(-2px);
+  background: #eef6ff;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.16);
+}
+
+.buttons button:active {
+  transform: scale(0.97);
+}
+
+.reset-btn {
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+}
+
+.reset-btn:hover {
+  background: rgba(255, 255, 255, 0.26) !important;
+}
+
+@media (max-width: 800px) {
+  .container {
+    padding: 28px;
+    max-width: 95%;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  #amount {
+    font-size: 60px;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .logo {
+    width: 130px;
+  }
 }
