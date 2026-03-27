@@ -1,6 +1,6 @@
 let amount = 0;
 let currentDisplay = 0;
-const goal = 5000;
+const goal = 1500;
 let animationId = null;
 
 window.onload = function () {
@@ -23,24 +23,18 @@ function formatNumber(num) {
 function updateProgress() {
   const progressFill = document.getElementById("progressFill");
   const percentText = document.getElementById("percentText");
-  const amountEl = document.getElementById("amount");
 
   let percent = (amount / goal) * 100;
   if (percent > 100) percent = 100;
-  if (percent < 0) percent = 0;
 
   percentText.innerText = Math.round(percent) + "%";
   progressFill.style.width = percent + "%";
 
-  amountEl.classList.remove("goal-reached");
-
-  if (percent < 50) {
-    progressFill.style.background = "linear-gradient(90deg, #ffffff, #d8ecff)";
-  } else if (percent < 100) {
-    progressFill.style.background = "linear-gradient(90deg, #7ecbff, #4fa3ff)";
+  
+  if (percent < 100) {
+    progressFill.style.background = "linear-gradient(90deg, #4fa3ff, #1e6eff)";
   } else {
-    progressFill.style.background = "linear-gradient(90deg, #16e08f, #08c270)";
-    amountEl.classList.add("goal-reached");
+    progressFill.style.background = "linear-gradient(90deg, #00ff9c, #00c97b)";
   }
 }
 
@@ -50,18 +44,15 @@ function updateDisplayInstant() {
 }
 
 function animateCounter(target) {
-  if (animationId) {
-    cancelAnimationFrame(animationId);
-  }
+  if (animationId) cancelAnimationFrame(animationId);
 
   function step() {
-    const diff = target - currentDisplay;
+    let diff = target - currentDisplay;
     currentDisplay += diff * 0.15;
 
     if (Math.abs(diff) < 0.5) {
       currentDisplay = target;
       document.getElementById("amount").innerText = formatNumber(target);
-      animationId = null;
       return;
     }
 
@@ -74,7 +65,6 @@ function animateCounter(target) {
 
 function changeAmount(value) {
   amount += value;
-  if (amount < 0) amount = 0;
 
   localStorage.setItem("amount", amount);
   updateProgress();
