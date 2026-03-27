@@ -10,9 +10,6 @@
 
   <img src="logo.png" class="logo" alt="Bachem Logo">
 
-  <div class="background-shape shape1"></div>
-  <div class="background-shape shape2"></div>
-
   <div class="container">
     <p class="tag">Spendenaktion</p>
     <h1>Ferienwoche für Diabeteskinder</h1>
@@ -24,7 +21,7 @@
     </div>
 
     <div class="goal-row">
-      <span id="goalText">Ziel: 5000 CHF</span>
+      <span>Ziel: 5000 CHF</span>
       <span id="percentText">0%</span>
     </div>
 
@@ -33,10 +30,11 @@
     </div>
 
     <div class="buttons">
-      <button onclick="changeAmount(5)">+5 CHF</button>
-      <button onclick="changeAmount(10)">+10 CHF</button>
-      <button onclick="changeAmount(20)">+20 CHF</button>
-      <button class="reset-btn" onclick="resetAmount()">Reset</button>
+      <button class="btn" onclick="changeAmount(5)">+5 CHF</button>
+      <button class="btn" onclick="changeAmount(10)">+10 CHF</button>
+      <button class="btn" onclick="changeAmount(20)">+20 CHF</button>
+      <button class="btn" onclick="changeAmount(-5)">-5 CHF</button>
+      <button class="btn reset" onclick="resetAmount()">Reset</button>
     </div>
   </div>
 
